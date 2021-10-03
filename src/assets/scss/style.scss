@@ -1,8 +1,8 @@
 /*!
- * Bootstrap v4.6.0 (https://getbootstrap.com/)
- * Copyright 2011-2021 The Bootstrap Authors
- * Copyright 2011-2021 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+ * Bootstrap v4.4.1 (https://getbootstrap.com/)
+ * Copyright 2011-2019 The Bootstrap Authors
+ * Copyright 2011-2019 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 
 @import "functions";
@@ -42,3 +42,45 @@
 @import "spinners";
 @import "utilities";
 @import "print";
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600;700&display=swap");
+// Logo styling
+.brand-text-icon {
+  font-size: 1.625em;
+  font-weight: 500;
+  font-family: "Poppins", sans-serif;
+  color: $primary;
+  &:hover {
+    color: $primary;
+    text-decoration: none;
+  }
+}
+
+// Navbar styling
+header {
+  border-bottom: 1px solid $gray-200;
+  width: 100%;
+  position: relative;
+  .navbar {
+    height: 5rem;
+    ul.navbar-nav {
+      li.nav-item {
+        &.active {
+          a.nav-link {
+            color: $primary;
+          }
+        }
+        a.nav-link {
+          letter-spacing: 1px;
+          font-family: "Poppins", sans-serif;
+          color: $gray-900;
+          padding-left: 1rem;
+          padding-right: 1rem;
+          &:hover {
+            color: $blue;
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+}

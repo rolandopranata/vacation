@@ -39,6 +39,7 @@ export default function Button(props) {
 		if (props.isExternal) {
 			// Condition if link external
 			return (
+				// eslint-disable-next-line react/jsx-no-target-blank
 				<a
 					href={props.href}
 					className={className.join(" ")}
@@ -63,18 +64,18 @@ export default function Button(props) {
 	}
 	// Return button component
 	return (
-		<Button
+		<button
 			className={className.join(" ")}
 			style={props.style}
 			onClick={onClick}>
 			{props.children}
-		</Button>
+		</button>
 	);
 }
 
 // Create Button Component Using propstypes.
 Button.prototype = {
-	type: propTypes.oneOf(["Button", "Link"]),
+	type: propTypes.oneOf(["button", "link"]),
 	onClick: propTypes.func,
 	href: propTypes.string,
 	target: propTypes.string,
