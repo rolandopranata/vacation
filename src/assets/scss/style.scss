@@ -14,6 +14,7 @@
 @import "images";
 @import "code";
 @import "grid";
+@import "container-grid";
 @import "tables";
 @import "forms";
 @import "buttons";
@@ -42,23 +43,16 @@
 @import "spinners";
 @import "utilities";
 @import "print";
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600;700&display=swap");
-// Logo styling
-.brand-text-icon {
-  font-size: 1.625em;
-  font-weight: 500;
-  font-family: "Poppins", sans-serif;
-  color: $primary;
-  &:hover {
-    color: $primary;
-    text-decoration: none;
-  }
+// Section Style
+section {
+  margin-top: 4.375rem;
 }
 
 // Navbar styling
 header {
   border-bottom: 1px solid $gray-200;
   width: 100%;
+  margin-bottom: 70px;
   position: relative;
   .navbar {
     height: 5rem;
@@ -83,4 +77,130 @@ header {
       }
     }
   }
+}
+
+// Logo styling
+.brand-text-icon {
+  font-size: 1.625em;
+  font-weight: 500;
+  font-family: "Poppins", sans-serif;
+  color: $primary;
+  &:hover {
+    color: $primary;
+    text-decoration: none;
+  }
+}
+
+// Card Style
+.card {
+  height: 100%;
+  // Tag price style
+  .tag {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 3;
+    padding: 0.25rem 1.25rem;
+    font-size: 0.875rem;
+    color: $white;
+    background-color: $pink;
+    min-height: 1.875rem;
+    border-radius: 0 15px;
+    // Text span style
+    span {
+      font-weight: 300;
+    }
+  }
+  // Image wrapper style
+  .img-wrapper {
+    height: 100%;
+    margin-bottom: 0;
+    border-radius: 0.9375rem;
+    overflow: hidden;
+  }
+  // Meta wrapper style
+  .meta-wrapper {
+    margin-top: 1rem;
+    h5 {
+      font-size: 1.125rem;
+      margin-bottom: 0.125rem;
+    }
+    span {
+      font-size: 0.875rem;
+    }
+  }
+  // Card Featuren style
+  &.card-featured {
+    overflow: hidden;
+    cursor: pointer;
+    height: 100%;
+    border-radius: 0.9375rem;
+    // Gradient Style
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      transform: scale(1.1);
+      transition: 0.5s transform ease-in-out;
+      z-index: 2;
+      @include gradient-y(rgba($black, 0), rgba($black, 0.51), 0%, 100%);
+    }
+    // Ovveride image wrapper style
+    .img-wrapper {
+      z-index: 1;
+      margin: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      transform: scale(1.1);
+      transition: 0.25s transform ease-in-out;
+      border-radius: $border-radius;
+    }
+    // Ovveride meta wrapper style
+    .meta-wrapper {
+      z-index: 4;
+      color: $white;
+      padding: 1.25rem;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 100%;
+      transform: translateY(0);
+      transition: 0.3s transform ease-in-out;
+      display: flex;
+      justify-content: flex-end;
+      flex-direction: column;
+    }
+    // Hover meta wrapper, ::after, and img-wrapper
+    &:hover {
+      .meta-wrapper {
+        transform: translateY(-10px);
+      }
+      &::after {
+        transform: scale(1);
+      }
+      .img-wrapper {
+        transform: scale(1);
+      }
+    }
+  }
+}
+
+// Image Style 1
+.img-cover {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
+
+// Image Style 2
+.img-containe {
+  object-fit: contain;
+  height: 100%;
+  width: 100%;
 }
