@@ -3,7 +3,8 @@
 // Base styles
 //
 .btn {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   font-family: $btn-font-family;
   font-weight: $btn-font-weight;
   color: $body-color;
@@ -116,9 +117,9 @@ $value in $theme-colors {
 }
 
 // Specificity overrides
-input[type="submit"],
-input[type="reset"],
-input[type="button"] {
+input[type='submit'],
+input[type='reset'],
+input[type='button'] {
   &.btn-block {
     width: 100%;
   }

@@ -1,9 +1,10 @@
-import React, { Component } from "react";
-import landingPage from "../json/landingPage.json";
-import Header from "parts/Header";
-import Hero from "parts/Hero";
-import MostPicked from "parts/MostPicked";
-import Categories from "parts/Categories";
+import React, { Component } from 'react';
+import landingPage from '../json/landingPage.json';
+import Header from 'parts/Header';
+import Hero from 'parts/Hero';
+import MostPicked from 'parts/MostPicked';
+import Categories from 'parts/Categories';
+import Testimoni from 'parts/Testimoni';
 
 export default class LandingPage extends Component {
 	constructor(props) {
@@ -23,6 +24,7 @@ export default class LandingPage extends Component {
 					refMostPicked={this.refMostPicked}
 					data={landingPage.categories}
 				/>
+				<Testimoni data={landingPage.testimonial}></Testimoni>
 			</>
 		);
 	}
