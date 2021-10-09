@@ -1,73 +1,72 @@
-import React, { useState, useRef, useEffect } from 'react';
-import propTypes from 'prop-types';
-import { DateRange } from 'react-date-range';
+import React, { useState, useRef, useEffect } from "react";
+import propTypes from "prop-types";
+import { DateRange } from "react-date-range";
 
-import './index.scss';
-import 'react-date-range/dist/styles.css'; // Main css file
-import 'react-date-range/dist/theme/default.css'; // Theme css file
+import "./index.scss";
+import "react-date-range/dist/styles.css"; // Main css file
+import "react-date-range/dist/theme/default.css"; // Theme css file
 
-import formatDate from 'utils/formatDate';
-import iconCalendar from 'assets/icons/ic_calendar.svg';
+import formatDate from "utils/formatDate";
+import iconCalendar from "assets/icons/ic_calendar.svg";
 
 export default function Date(props) {
 	const { value, placeholder, name } = props;
-	const { isShowed, setIsShowed } = useState(false);
+	const [isShowed, setIsShowed] = useState(false);
 
 	const datePickerChange = (value) => {
 		const target = {
 			target: {
 				value: value.selection,
-				name,
+				name: name,
 			},
 		};
 		props.onChange(target);
 	};
 
 	useEffect(() => {
-		document.addEventListener('mousedown', handleClickOutside);
+		document.addEventListener("mousedown", handleClickOutside);
 
 		return () => {
-			document.removeEventListener('mousedown', handleClickOutside);
+			document.removeEventListener("mousedown", handleClickOutside);
 		};
 	});
 
 	const refDate = useRef(null);
 	const handleClickOutside = (event) => {
-		if (refDate && !refDate.current.contains(event.targer)) {
+		if (refDate && !refDate.current.contains(event.target)) {
 			setIsShowed(false);
 		}
 	};
 
-	// Function untuk check sebuah array mempunyai unsur number 1
 	const check = (focus) => {
 		focus.indexOf(1) < 0 && setIsShowed(false);
 	};
 
-	const displayDate = `${value.startDate ? formatDate(value.startDate) : ''}${
-		value.endDate ? ' - ' + formatDate(value.endDate) : ''
+	const displayDate = `${value.startDate ? formatDate(value.startDate) : ""}${
+		value.endDate ? " - " + formatDate(value.endDate) : ""
 	}`;
 
 	return (
 		<div
 			ref={refDate}
-			className={['input-date mb-3', props.outerClassName].join(' ')}>
-			<div className='input-group'>
-				<div className='input-group-prepend bg-gray-900'>
-					<span className='input-group-text'>
-						<img src={iconCalendar} alt='icon calendar' />
+			className={["input-date mb-3", props.outerClassName].join(" ")}>
+			<div className="input-group">
+				<div className="input-group-prepend bg-gray-900">
+					<span className="input-group-text">
+						<img src={iconCalendar} alt="icon calendar" />
 					</span>
 				</div>
 				<input
 					readOnly
-					type='text'
-					className='form-control'
+					type="text"
+					className="form-control"
 					value={displayDate}
 					placeholder={placeholder}
 					onClick={() => setIsShowed(!isShowed)}
 				/>
 
 				{isShowed && (
-					<div className='date-range-wrapper'>
+					<div className="date-range-wrapper">
 						<DateRange
 							editableDateInputs={true}
 							onChange={datePickerChange}
@@ -84,7 +83,7 @@ export default function Date(props) {
 
 Date.propTypes = {
 	value: propTypes.object,
-	onChenge: propTypes.func,
+	onChange: propTypes.func,
 	placeholder: propTypes.string,
 	outerClassName: propTypes.string,
 };
