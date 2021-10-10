@@ -1,0 +1,44 @@
+@import "../../../assets/scss/colorVariables";
+.input-text {
+  margin-bottom: 1.25rem; // 20px
+  position: relative;
+  .input-group {
+    background-color: $white;
+    .input-group-text {
+      display: flex;
+      justify-content: center;
+      position: absolute;
+      width: 2.813rem; // 45px;
+      height: 2.813rem; // 45px;
+      pointer-events: none;
+      border: 0;
+      cursor: auto;
+      color: $white;
+      padding: 0;
+      border-radius: 4px !important;
+      z-index: 999;
+    }
+    //   ovverride style form-control
+    input.form-control {
+      border: 0;
+      border-radius: 4px;
+      height: 2.813rem; // 45px;
+      width: 100%;
+      outline: 0;
+      background-color: $gray-100;
+      padding: 0.575rem; //9.2 px
+      text-align: center;
+      &::placeholder {
+        color: $gray-200;
+      }
+    }
+  }
+  .error-helper {
+    position: absolute;
+    top: 2.813rem; // 45px
+    background-color: $red;
+    color: $white;
+    padding: 0 2px;
+    font-size: 0.675rem; // 10px
+  }
+}
