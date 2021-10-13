@@ -27,12 +27,12 @@ export default function InputFile(props) {
 				)}
 				<input
 					accept={accept}
-					ref={ref}
+					ref={refInputFile}
 					name={name}
 					className="d-none"
 					type="file"
 					value={value}
-					onChange={onChange}
+					onChange={props.onChange}
 				/>
 				<input
 					onClick={() => refInputFile.current.click()}

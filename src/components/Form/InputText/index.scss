@@ -1,33 +1,33 @@
 @import "../../../assets/scss/colorVariables";
 .input-text {
-  margin-bottom: 1.25rem; // 20px
+  margin-bottom: 20px; // 20px
   position: relative;
   .input-group {
     background-color: $white;
     .input-group-text {
-      display: flex;
-      justify-content: center;
-      position: absolute;
-      width: 2.813rem; // 45px;
-      height: 2.813rem; // 45px;
       pointer-events: none;
       border: 0;
       cursor: auto;
-      color: $white;
       padding: 0;
       border-radius: 4px !important;
+      width: 2.813rem; // 45px;
+      height: 2.813rem; // 45px;
+      display: flex;
+      justify-content: center;
+      background-color: $gray-900;
+      position: absolute;
       z-index: 999;
     }
     //   ovverride style form-control
     input.form-control {
       border: 0;
       border-radius: 4px;
+      outline: 0;
+      box-shadow: none;
+      background-color: $gray-100;
+      padding: 0.575rem 14px; //9.2 px
       height: 2.813rem; // 45px;
       width: 100%;
-      outline: 0;
-      background-color: $gray-100;
-      padding: 0.575rem; //9.2 px
-      text-align: center;
       &::placeholder {
         color: $gray-200;
       }

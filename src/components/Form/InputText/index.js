@@ -4,6 +4,7 @@ import propTypes from "prop-types";
 import "./index.scss";
 
 export default function InputText(props) {
+	// Destructure object props
 	const {
 		value,
 		type,
@@ -15,31 +16,37 @@ export default function InputText(props) {
 		inputClassName,
 		errorResponse,
 	} = props;
+
+	// Create useState if Error and setHasError
 	const [HasError, setHasError] = useState(null);
 
+	// Create pattern email and phone using regex
 	let pattern = "";
 	if (type === "email") pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Create patter email
 	if (type === "tel") pattern = "[0-9]*"; // Create pattern phone
 
+	// Function for get input user
 	const onChange = (event) => {
 		const target = {
-			targer: {
-				name: value,
+			target: {
+				name: name,
 				value: event.target.value,
 			},
 		};
+
+		// Check email again if pattern has validation success
+		if (type === "email") {
+			if (!pattern.test(event.target.value)) setHasError(errorResponse);
+			else setHasError(null);
+		}
+
+		// Check phone again if pattern has validation success
+		if (type === "tel") {
+			if (event.target.validity.valid) props.onChange(target);
+		} else {
+			props.onChange(target);
+		}
 	};
-
-	if (type === "email") {
-		if (!pattern.test(event.target.value)) setHasError(errorResponse);
-		else setHasError(null);
-	}
-
-	if (type === "tel") {
-		if (event.target.validity.valid) props.onChange(target);
-	} else {
-		props.onChange(target);
-	}
 
 	return (
 		<div className={["input-text mb-3", outerClassName].join(" ")}>
@@ -50,8 +57,8 @@ export default function InputText(props) {
 					</div>
 				)}
 				<input
-					type={type}
 					name={name}
+					type={type}
 					pattern={pattern}
 					className={["form-control", inputClassName].join(" ")}
 					value={value}

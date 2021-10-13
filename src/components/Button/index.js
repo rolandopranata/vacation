@@ -6,6 +6,7 @@ export default function Button(props) {
 	// Preparing button component
 	const className = [props.className];
 	if (props.isPrimary) className.push("btn-primary");
+	if (props.isLight) className.push("btn-light");
 	if (props.isLarge) className.push("btn-lg");
 	if (props.isSmall) className.push("btn-sm");
 	if (props.isBlock) className.push("btn-block");
@@ -80,6 +81,7 @@ Button.prototype = {
 	href: propTypes.string,
 	target: propTypes.string,
 	className: propTypes.string,
+	isLight: propTypes.bool,
 	isDisabled: propTypes.bool,
 	isPrimary: propTypes.bool,
 	isExternal: propTypes.bool,

@@ -1,15 +1,17 @@
-@import "../../assets/scss/colorVariables";
+@import "../../../assets/scss/colorVariables";
 $stepperMainColor: $gray-200;
 $size: 3.125rem; // 50px
 ol.stepper {
   display: flex;
-  place-items: center;
+  justify-content: center;
+  align-items: center;
   margin: 0;
   padding: 0;
   li {
     position: relative;
     display: flex;
-    place-items: center;
+    justify-content: center;
+    align-items: center;
     list-style: none;
     width: $size;
     height: $size;
