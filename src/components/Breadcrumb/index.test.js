@@ -3,29 +3,27 @@ import { render } from '@testing-library/react';
 import Breadcrumb from './index';
 import { BrowserRouter as Router } from 'react-router-dom';
 
-// Setup build testing
 const setup = () => {
-	const breadcrumblist = [
+	const breadcrumbList = [
 		{ pageTitle: 'Home', pageHref: '' },
-		{ pageTitle: 'Home', pageHref: '' },
+		{ pageTitle: 'House Details', pageHref: '' },
 	];
-
-	// Create Breadcrumb testing component
 	const { container } = render(
 		<Router>
-			<Breadcrumb data={breadcrumblist}></Breadcrumb>
+			<Breadcrumb data={breadcrumbList} />
 		</Router>
 	);
+	const breadcrumb = container.querySelector(`.breadcrumb`);
 
-	const breadcrumb = container.querySelector(`.breadcrumb`); // select breadcrumb component
-
-	return breadcrumb;
+	return {
+		breadcrumb,
+	};
 };
 
-test('Should have <ol> component with className .breadcrumnb and have text Home & House Details.', () => {
+test('Should have <ol> with className .breadcrumb and have text Home & House Details', () => {
 	const { breadcrumb } = setup();
 
 	expect(breadcrumb).toBeInTheDocument();
-	expect(breadcrumb).toBeInTheDocument('Home');
-	expect(breadcrumb).toBeInTheDocument('House Details');
+	expect(breadcrumb).toHaveTextContent('Home');
+	expect(breadcrumb).toHaveTextContent('House Details');
 });

@@ -30,8 +30,8 @@ class TestInput extends React.Component {
 
 const setup = () => {
 	const { container } = render(<TestInput />);
-	const wrapper = container.querySelector('.input-date');
-	const input = container.querySelector('.input.form-control');
+	const wrapper = container.querySelector(`.input-date`);
+	const input = container.querySelector(`input.form-control`);
 
 	return {
 		container,
@@ -46,7 +46,7 @@ test('Should have wrapper with className .form-control', () => {
 	expect(wrapper).toBeInTheDocument();
 });
 
-test('Should have tag <input> and has className  .form-control', () => {
+test('Should have tag <input> and has className .form-control', () => {
 	const { input } = setup();
 
 	expect(input).toBeInTheDocument();
@@ -55,12 +55,10 @@ test('Should have tag <input> and has className  .form-control', () => {
 test('Should show date picker when click input field', () => {
 	const { container, input } = setup();
 
-	screen.debug();
+	//   screen.debug();
 	fireEvent.click(input, { button: 1 });
-	const datePickerWrapper = container.querySelector('.date-range-wrapper');
+	const datePickerWrapper = container.querySelector(`.date-range-wrapper`);
+	//   screen.debug();
 
 	expect(datePickerWrapper).toBeInTheDocument();
-	screen.debug();
-
-	expect(input).toBeInTheDocument();
 });
