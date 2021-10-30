@@ -5,45 +5,45 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 
-@import "functions";
-@import "colorVariables";
-@import "variables";
-@import "mixins";
-@import "root";
-@import "reboot";
-@import "type";
-@import "images";
-@import "code";
-@import "grid";
-@import "container-grid";
-@import "tables";
-@import "forms";
-@import "buttons";
-@import "transitions";
-@import "dropdown";
-@import "button-group";
-@import "input-group";
-@import "custom-forms";
-@import "nav";
-@import "navbar";
-@import "card";
-@import "breadcrumb";
-@import "pagination";
-@import "badge";
-@import "jumbotron";
-@import "alert";
-@import "progress";
-@import "media";
-@import "list-group";
-@import "close";
-@import "toasts";
-@import "modal";
-@import "tooltip";
-@import "popover";
-@import "carousel";
-@import "spinners";
-@import "utilities";
-@import "print";
+@import 'functions';
+@import 'colorVariables';
+@import 'variables';
+@import 'mixins';
+@import 'root';
+@import 'reboot';
+@import 'type';
+@import 'images';
+@import 'code';
+@import 'grid';
+@import 'container-grid';
+@import 'tables';
+@import 'forms';
+@import 'buttons';
+@import 'transitions';
+@import 'dropdown';
+@import 'button-group';
+@import 'input-group';
+@import 'custom-forms';
+@import 'nav';
+@import 'navbar';
+@import 'card';
+@import 'breadcrumb';
+@import 'pagination';
+@import 'badge';
+@import 'jumbotron';
+@import 'alert';
+@import 'progress';
+@import 'media';
+@import 'list-group';
+@import 'close';
+@import 'toasts';
+@import 'modal';
+@import 'tooltip';
+@import 'popover';
+@import 'carousel';
+@import 'spinners';
+@import 'utilities';
+@import 'print';
 // Section Style
 section {
   margin-top: 4.375rem;
@@ -65,14 +65,30 @@ header {
           }
         }
         a.nav-link {
+          position: relative;
           letter-spacing: 1px;
-          font-family: "Poppins", sans-serif;
+          font-family: 'Poppins', sans-serif;
           color: $gray-900;
           padding-left: 1rem;
           padding-right: 1rem;
+          transition: all 0.3s;
           &:hover {
             color: $blue;
-            text-decoration: underline;
+          }
+          &::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            right: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 3px;
+            background-color: $blue;
+            transition: all 0.3s;
+          }
+          &:hover::after {
+            max-width: 76%;
           }
         }
       }
@@ -84,7 +100,7 @@ header {
 .brand-text-icon {
   font-size: 1.625em;
   font-weight: 500;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   color: $primary;
   &:hover {
     color: $primary;
@@ -139,7 +155,7 @@ header {
     height: 100%;
     // Gradient Style
     &::after {
-      content: "";
+      content: '';
       position: absolute;
       top: 0;
       left: 0;

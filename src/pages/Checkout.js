@@ -1,33 +1,34 @@
-import React, { Component } from "react";
-import { Fade } from "react-reveal";
+import React, { Component } from 'react';
+import { Fade } from 'react-reveal';
 
-import Header from "parts/Header";
-import Button from "components/Button";
+import Header from 'parts/Header';
+import Button from 'components/Button';
+import { connect } from 'react-redux';
 
 import Stepper, {
 	Numbering,
 	Meta,
 	MainContent,
 	Controller,
-} from "components/Stepper";
+} from 'components/Stepper';
 
-import BookingInformation from "parts/Checkout/BookingInformation";
-import Payment from "parts/Checkout/Payment";
-import Completed from "parts/Checkout/Completed";
+import BookingInformation from 'parts/Checkout/BookingInformation';
+import Payment from 'parts/Checkout/Payment';
+import Completed from 'parts/Checkout/Completed';
 
-import ItemDetails from "json/itemDetails.json";
+import ItemDetails from 'json/itemDetails.json';
 
-export default class Checkout extends Component {
+class Checkout extends Component {
 	// Create blueprint data
 	state = {
 		data: {
-			firstName: "",
-			lastName: "",
-			email: "",
-			phone: "",
-			proofPayment: "",
-			bankName: "",
-			bankHolder: "",
+			firstName: '',
+			lastName: '',
+			email: '',
+			phone: '',
+			proofPayment: '',
+			bankName: '',
+			bankHolder: '',
 		},
 	};
 
@@ -48,15 +49,35 @@ export default class Checkout extends Component {
 
 	render() {
 		const { data } = this.state;
-		const checkout = {
-			duration: 3,
-		};
+		const { checkout } = this.props;
+
+		if (!checkout) {
+			return (
+				<div className='container' style={{ minWidth: '100%' }}>
+					<div
+						className='row align-items-center justify-content-center text-center'
+						style={{
+							height: '100vh',
+							fontSize: '1.8em',
+						}}>
+						<div className='col-4'>
+							Choice your bedroom before!
+							<div>
+								<Button className='btn mt-4' type='link' href='/' isLight>
+									Back
+								</Button>
+							</div>
+						</div>
+					</div>
+				</div>
+			);
+		}
 
 		// Create templeting data Checkout page
 		const steps = {
 			bookingInformation: {
-				title: "Booking Information",
-				description: "Please fill up the blank below",
+				title: 'Booking Information',
+				description: 'Please fill up the blank below',
 				content: (
 					<BookingInformation
 						data={data}
@@ -67,8 +88,8 @@ export default class Checkout extends Component {
 				),
 			},
 			payment: {
-				title: "Payment",
-				description: "Kindly follow the instruction below.",
+				title: 'Payment',
+				description: 'Kindly follow the instruction below.',
 				content: (
 					<Payment
 						data={data}
@@ -79,7 +100,7 @@ export default class Checkout extends Component {
 				),
 			},
 			completed: {
-				title: "Yay! Completed",
+				title: 'Yay! Completed',
 				description: null,
 				content: <Completed />,
 			},
@@ -89,7 +110,7 @@ export default class Checkout extends Component {
 			<>
 				<Header isCentered />
 
-				<Stepper steps={steps} initialStep="bookingInformation">
+				<Stepper steps={steps} initialStep='bookingInformation'>
 					{(prevStep, nextStep, CurrentStep, steps) => (
 						<>
 							<Numbering
@@ -101,17 +122,17 @@ export default class Checkout extends Component {
 							<Meta data={steps} current={CurrentStep} />
 							<MainContent data={steps} current={CurrentStep} />
 
-							{CurrentStep === "bookingInformation" && (
+							{CurrentStep === 'bookingInformation' && (
 								<Controller>
-									{data.firstName !== "" &&
-										data.lastName !== "" &&
-										data.email !== "" &&
-										data.phone !== "" && (
+									{data.firstName !== '' &&
+										data.lastName !== '' &&
+										data.email !== '' &&
+										data.phone !== '' && (
 											// If complete
 											<Fade>
 												<Button
-													className="btn mb-3"
-													type="button"
+													className='btn mb-3'
+													type='button'
 													isBlock
 													isPrimary
 													hasShadow
@@ -121,8 +142,8 @@ export default class Checkout extends Component {
 											</Fade>
 										)}
 									<Button
-										className="btn mb-4"
-										type="link"
+										className='btn mb-4'
+										type='link'
 										isBlock
 										isLight
 										href={`/properties/${checkout._id}`}>
@@ -131,16 +152,16 @@ export default class Checkout extends Component {
 								</Controller>
 							)}
 
-							{CurrentStep === "payment" && (
+							{CurrentStep === 'payment' && (
 								<Controller>
-									{data.proofPayment !== "" &&
-										data.bankName !== "" &&
-										data.bankHolder !== "" && (
+									{data.proofPayment !== '' &&
+										data.bankName !== '' &&
+										data.bankHolder !== '' && (
 											// If complete
 											<Fade>
 												<Button
-													className="btn mb-3"
-													type="button"
+													className='btn mb-3'
+													type='button'
 													isBlock
 													isPrimary
 													hasShadow
@@ -150,8 +171,8 @@ export default class Checkout extends Component {
 											</Fade>
 										)}
 									<Button
-										className="btn mb-4"
-										type="button"
+										className='btn mb-4'
+										type='button'
 										isBlock
 										isLight
 										onClick={prevStep}>
@@ -160,15 +181,15 @@ export default class Checkout extends Component {
 								</Controller>
 							)}
 
-							{CurrentStep === "completed" && (
+							{CurrentStep === 'completed' && (
 								<Controller>
 									<Button
-										className="btn mb-4"
-										type="link"
+										className='btn mb-4'
+										type='link'
 										isBlock
 										isPrimary
 										hasShadow
-										href="">
+										href=''>
 										Back to Home
 									</Button>
 								</Controller>
@@ -180,3 +201,9 @@ export default class Checkout extends Component {
 		);
 	}
 }
+
+const mapStateToProps = (state) => ({
+	checkout: state.checkout,
+});
+
+export default connect(mapStateToProps)(Checkout);

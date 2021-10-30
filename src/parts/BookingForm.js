@@ -1,13 +1,11 @@
-import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
+import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
+import propTypes from 'prop-types';
 
-import propTypes from "prop-types";
-
-import Button from "components/Button";
-import { InputNumber, InputDate } from "components/Form";
+import Button from 'components/Button';
+import { InputNumber, InputDate } from 'components/Form';
 
 class BookingForm extends Component {
-	// Extends data from component and create data for booking form
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -16,13 +14,12 @@ class BookingForm extends Component {
 				date: {
 					startDate: new Date(),
 					endDate: new Date(),
-					key: "selection",
+					key: 'selection',
 				},
 			},
 		};
 	}
 
-	// Function update booking form when user choice
 	updateData = (e) => {
 		this.setState({
 			...this.state,
@@ -33,7 +30,6 @@ class BookingForm extends Component {
 		});
 	};
 
-	// Create lifecycle
 	componentDidUpdate(prevProps, prevState) {
 		const { data } = this.state;
 
@@ -49,7 +45,6 @@ class BookingForm extends Component {
 			});
 		}
 
-		// Check duration date not same data.duration
 		if (prevState.data.duration !== data.duration) {
 			const startDate = new Date(data.date.startDate);
 			const endDate = new Date(
@@ -68,7 +63,6 @@ class BookingForm extends Component {
 		}
 	}
 
-	// Function start booking checkout
 	startBooking = () => {
 		const { data } = this.state;
 		this.props.startBooking({
@@ -79,7 +73,7 @@ class BookingForm extends Component {
 				endDate: data.date.endDate,
 			},
 		});
-		this.props.history.push("/checkout");
+		this.props.history.push('/checkout');
 	};
 
 	render() {
@@ -87,43 +81,43 @@ class BookingForm extends Component {
 		const { itemDetails } = this.props;
 
 		return (
-			<div className="card bordered" style={{ padding: "60px 80px" }}>
-				<h4 className="mb-3">Start Booking</h4>
-				<h5 className="h2 text-teal mb-4">
-					${itemDetails.price}{" "}
-					<span className="text-gray-500 font-weight-light">
+			<div className='card bordered' style={{ padding: '60px 80px' }}>
+				<h4 className='mb-3'>Start Booking</h4>
+				<h5 className='h2 text-teal mb-4'>
+					${itemDetails.price}{' '}
+					<span className='text-gray-500 font-weight-light'>
 						per {itemDetails.unit}
 					</span>
 				</h5>
 
-				<label htmlFor="duration">How long you will stay?</label>
+				<label htmlFor='duration'>How long you will stay?</label>
 				<InputNumber
 					max={30}
-					suffix={" night"}
+					suffix={' night'}
 					isSuffixPlural
 					onChange={this.updateData}
-					name="duration"
+					name='duration'
 					value={data.duration}
 				/>
 
-				<label htmlFor="date">Pick a date</label>
-				<InputDate onChange={this.updateData} name="date" value={data.date} />
+				<label htmlFor='date'>Pick a date</label>
+				<InputDate onChange={this.updateData} name='date' value={data.date} />
 
 				<h6
-					className="text-gray-500 font-weight-light"
+					className='text-gray-500 font-weight-light'
 					style={{ marginBottom: 40 }}>
-					You will pay{" "}
-					<span className="text-gray-900">
+					You will pay{' '}
+					<span className='text-gray-900'>
 						${itemDetails.price * data.duration} USD
-					</span>{" "}
-					per{" "}
-					<span className="text-gray-900">
+					</span>{' '}
+					per{' '}
+					<span className='text-gray-900'>
 						{data.duration} {itemDetails.unit}
 					</span>
 				</h6>
 
 				<Button
-					className="btn"
+					className='btn'
 					hasShadow
 					isPrimary
 					isBlock
@@ -135,7 +129,6 @@ class BookingForm extends Component {
 	}
 }
 
-// Create props data
 BookingForm.propTypes = {
 	itemDetails: propTypes.object,
 	startBooking: propTypes.func,
