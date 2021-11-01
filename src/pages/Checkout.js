@@ -64,11 +64,11 @@ class Checkout extends Component {
 							Choice your bedroom before!
 							<div>
 								<Button className='btn mt-4' type='link' href='/' isLight>
-									Back
-								</Button>
-							</div>
-						</div>
-					</div>
+									Back{' '}
+								</Button>{' '}
+							</div>{' '}
+						</div>{' '}
+					</div>{' '}
 				</div>
 			);
 		}
@@ -109,8 +109,8 @@ class Checkout extends Component {
 		return (
 			<>
 				<Header isCentered />
-
 				<Stepper steps={steps} initialStep='bookingInformation'>
+					{' '}
 					{(prevStep, nextStep, CurrentStep, steps) => (
 						<>
 							<Numbering
@@ -118,12 +118,11 @@ class Checkout extends Component {
 								current={CurrentStep}
 								style={{ marginBottom: 50 }}
 							/>
-
-							<Meta data={steps} current={CurrentStep} />
+							<Meta data={steps} current={CurrentStep} />{' '}
 							<MainContent data={steps} current={CurrentStep} />
-
 							{CurrentStep === 'bookingInformation' && (
 								<Controller>
+									{' '}
 									{data.firstName !== '' &&
 										data.lastName !== '' &&
 										data.email !== '' &&
@@ -137,23 +136,23 @@ class Checkout extends Component {
 													isPrimary
 													hasShadow
 													onClick={nextStep}>
-													Continue to Book
-												</Button>
+													Continue to Book{' '}
+												</Button>{' '}
 											</Fade>
-										)}
+										)}{' '}
 									<Button
 										className='btn mb-4'
 										type='link'
 										isBlock
 										isLight
 										href={`/properties/${checkout._id}`}>
-										Cancel
-									</Button>
+										Cancel{' '}
+									</Button>{' '}
 								</Controller>
 							)}
-
 							{CurrentStep === 'payment' && (
 								<Controller>
+									{' '}
 									{data.proofPayment !== '' &&
 										data.bankName !== '' &&
 										data.bankHolder !== '' && (
@@ -166,21 +165,20 @@ class Checkout extends Component {
 													isPrimary
 													hasShadow
 													onClick={nextStep}>
-													Continue to Book
-												</Button>
+													Continue to Book{' '}
+												</Button>{' '}
 											</Fade>
-										)}
+										)}{' '}
 									<Button
 										className='btn mb-4'
 										type='button'
 										isBlock
 										isLight
 										onClick={prevStep}>
-										Cancel
-									</Button>
+										Cancel{' '}
+									</Button>{' '}
 								</Controller>
 							)}
-
 							{CurrentStep === 'completed' && (
 								<Controller>
 									<Button
@@ -190,13 +188,13 @@ class Checkout extends Component {
 										isPrimary
 										hasShadow
 										href=''>
-										Back to Home
-									</Button>
+										Back to Home{' '}
+									</Button>{' '}
 								</Controller>
-							)}
+							)}{' '}
 						</>
-					)}
-				</Stepper>
+					)}{' '}
+				</Stepper>{' '}
 			</>
 		);
 	}
